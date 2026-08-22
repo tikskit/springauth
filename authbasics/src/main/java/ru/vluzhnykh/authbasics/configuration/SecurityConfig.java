@@ -36,6 +36,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain configure(HttpSecurity http, AuthenticationProvider authenticationProvider) {
         http.httpBasic(Customizer.withDefaults());
+        http.formLogin(
+                c -> c.defaultSuccessUrl("/index")
+        );
         http.authenticationProvider(authenticationProvider);
         http.authorizeHttpRequests(
                 c -> c.anyRequest().authenticated()
