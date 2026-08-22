@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
-import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
@@ -36,11 +35,12 @@ public class MainTests {
     public void loggingInWithCorrectAuthority() throws Exception {
         mvc.perform(
                         formLogin()
-                                .user("john")
+                                .user("John")
                                 .password("12345")
                 )
                 .andExpect(status().isFound())
                 .andExpect(authenticated())
                 .andExpect(redirectedUrl("/index"));
     }
+
 }
